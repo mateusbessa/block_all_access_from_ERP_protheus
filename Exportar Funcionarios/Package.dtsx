@@ -1,0 +1,1113 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/5/2020 4:12:51 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="BRURES04"
+  DTS:CreatorName="MONDELLI0\francisco.bessa"
+  DTS:DTSID="{FEC0C7B3-2FB2-46AB-9AA3-9D1E7D2662DB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="75"
+  DTS:VersionGUID="{3FEE079C-AA74-441E-9C84-E4E46061B586}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BRUVDB04.TOTVSDB_UPI]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{DBE1F2DB-3DDA-481D-B4BB-896B5427D151}"
+      DTS:ObjectName="BRUVDB04.TOTVSDB_UPI">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=BRUVDB04;User ID=totvs;Initial Catalog=TOTVSDB_UPI;Persist Security Info=True;Application Name=SSIS-Package-{DBE1F2DB-3DDA-481D-B4BB-896B5427D151}BRUVDB04.TOTVSDB_UPI;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA76Rrypojxke05Bf+zR3H8AAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAKnGUHDrpmgOx5tEffBIWGAAAAAASAAACgAAAAEAAAAGmWb5vK3goS6Fs1qeCnxZcYAAAAYw4kBqCV6YbWEUXCWkB0vAc8W8wYBY3wFAAAAJNEvpyomhS41TmJZ5UOorDlxkP4</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Export.txt]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="Exportação do Arquivo Texto"
+      DTS:DTSID="{D3840D46-1D9E-4A38-B4CC-B496F79E388B}"
+      DTS:ObjectName="Export.txt">
+      <DTS:PropertyExpression
+        DTS:Name="ColumnNamesInFirstDataRow">@[$Package::ExportCsv_ColumnNamesInFirstDataRow]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\MONDELLIAD3\netlogon\Inativacao_AD\funcionarios.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SamAccountName"
+              DTS:DTSID="{DA509428-F824-4D92-904D-91684698BE17}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[funcionarios_lookup]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{E65C1383-6641-4E6D-BD3F-5EEA977DFBEE}"
+      DTS:ObjectName="funcionarios_lookup">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\MONDELLIAD3\netlogon\Inativacao_AD\funcionarios.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SamAccountName"
+              DTS:DTSID="{5B0008AD-A2A4-4A72-97D3-433E7731888E}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[VDB01.Apis_UPI]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{6336EB67-9680-46DF-8A5D-ED52570AE118}"
+      DTS:ObjectName="VDB01.Apis_UPI">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=VDB01;User ID=sa;Initial Catalog=Apis_UPI;Persist Security Info=True;Application Name=SSIS-Package-{6336EB67-9680-46DF-8A5D-ED52570AE118}VDB01.Apis_UPI;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA76Rrypojxke05Bf+zR3H8AAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAM6ONbcjvEkKymPKL6bqw+AAAAAASAAACgAAAAEAAAAAHZYhFPDFnNm/Fm2PqvK4EQAAAAwnDANySmAVUkr9QI2iITehQAAADxbwvrI4uVEZEB7GQEIwdbteBT4g</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[VDB01.PROC_DEMITIDOS]"
+      DTS:CreationName="ADO"
+      DTS:DTSID="{6C6E0FFD-3BCE-41EA-82CF-E34D40479A68}"
+      DTS:ObjectName="VDB01.PROC_DEMITIDOS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=VDB01;User ID=sa;Initial Catalog=Apis_UPI;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA76Rrypojxke05Bf+zR3H8AAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADBBSN3sGTx2V8Mfopx8re4AAAAAASAAACgAAAAEAAAAPeHisf6c6EdTIqlpqFoweUQAAAAxXmlFs6gBtV08KIUOQsrqBQAAADtkBkXd1F2am4dyVo5/g6TN4S45A</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[VDB01_DEMITIDOS_LOOKUP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{739F0189-35FB-4B39-81B3-A5B52771C23F}"
+      DTS:ObjectName="VDB01_DEMITIDOS_LOOKUP">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=VDB01;User ID=sa;Initial Catalog=Apis_UPI;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA76Rrypojxke05Bf+zR3H8AAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAACeV7pLycL1GhB4LY0LYcmrAAAAAASAAACgAAAAEAAAAKuaXaJzHIdhoSvUjpDvIAIQAAAAMGbvOYWpxcYJkxhAeXeWThQAAACQv61CAX+5UUfFawygAqDl8FSk6A</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="11"
+      DTS:DTSID="{F071A0AF-9C4F-4995-9AD5-46B32799C60D}"
+      DTS:ObjectName="ExportCsv_ColumnNamesInFirstDataRow">
+      <DTS:Property
+        DTS:DataType="11"
+        DTS:Name="ParameterValue">-1</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C98EA905-975E-43ED-A5FA-4487734A3F9B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DiretorioMovidos">
+      <DTS:VariableValue
+        DTS:DataType="8">%logonserver%\netlogon\Inativacao_AD\funcionarios.txt</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Apaga arquivo"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="Apaga arquivo"
+      DTS:DTSID="{2A9B6D72-5261-40FB-9938-9487614900B3}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Apaga arquivo"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOperationType="DeleteFile"
+          TaskSourcePath="{D3840D46-1D9E-4A38-B4CC-B496F79E388B}"
+          TaskDestinationPath="User::DiretorioMovidos"
+          TaskIsDestinationVariable="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Inativa Usuario AD e  popula tabela APIS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{426AAF63-B39B-46E8-888E-418D13636C42}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Inativa Usuario AD e  popula tabela APIS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."DemitidosRH"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[VDB01.Apis_UPI]"
+                  connectionManagerRefId="Package.ConnectionManagers[VDB01.Apis_UPI]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[ACTIVEDIRECTORY]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="ACTIVEDIRECTORY"
+                      externalMetadataColumnId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[UserAD]"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Output].Columns[ACTIVEDIRECTORY]" />
+                    <inputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="date"
+                      externalMetadataColumnId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DataInativacao]"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Outputs[Derived Column Output].Columns[date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[UserAD]"
+                      dataType="wstr"
+                      length="30"
+                      name="UserAD" />
+                    <externalMetadataColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[DataInativacao]"
+                      dataType="dbTimeStamp"
+                      name="DataInativacao" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT LTRIM(RTRIM(ACTIVEDIRECTORY)) AS ACTIVEDIRECTORY FROM VW_FUNCIONARIOS_INTEGRA_DEMITIDOS_AFASTADOS
+WHERE SITUACAO = 'INATIVO'
+AND ACTIVEDIRECTORY &lt;&gt; ' '</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BRUVDB04.TOTVSDB_UPI]"
+                  connectionManagerRefId="Package.ConnectionManagers[BRUVDB04.TOTVSDB_UPI]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Output].Columns[ACTIVEDIRECTORY]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ACTIVEDIRECTORY]"
+                      length="30"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Output].Columns[ACTIVEDIRECTORY]"
+                      name="ACTIVEDIRECTORY"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ACTIVEDIRECTORY]"
+                      dataType="wstr"
+                      length="30"
+                      name="ACTIVEDIRECTORY" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ACTIVEDIRECTORY]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ACTIVEDIRECTORY]"
+                      name="ACTIVEDIRECTORY" />
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Inputs[Data Conversion Input].Columns[ACTIVEDIRECTORY]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="ACTIVEDIRECTORY"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Output].Columns[ACTIVEDIRECTORY]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Outputs[Data Conversion Output].Columns[STR_ACTIVEDIRECTORY]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="30"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Outputs[Data Conversion Output].Columns[STR_ACTIVEDIRECTORY]"
+                      name="STR_ACTIVEDIRECTORY"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Output].Columns[ACTIVEDIRECTORY]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Outputs[Derived Column Output].Columns[date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Outputs[Derived Column Output].Columns[date]"
+                      name="date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Inativa Usuario AD e  popula tabela APIS\Flat File Destination 1"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination 1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Flat File Destination 1.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Export.txt]"
+                  connectionManagerRefId="Package.ConnectionManagers[Export.txt]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Flat File Destination 1.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[ACTIVEDIRECTORY]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="ACTIVEDIRECTORY"
+                      externalMetadataColumnId="Package\Inativa Usuario AD e  popula tabela APIS\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[SamAccountName]"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Output].Columns[ACTIVEDIRECTORY]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[SamAccountName]"
+                      dataType="wstr"
+                      length="30"
+                      name="SamAccountName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup - APIS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[DemitidosRH]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[DemitidosRH]) [refTable]
+where [refTable].[UserAD] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="UserAD" dataType="DT_STR" length="30" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="DataInativacao" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Outputs[Data Conversion Output].Columns[STR_ACTIVEDIRECTORY]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[VDB01_DEMITIDOS_LOOKUP]"
+                  connectionManagerRefId="Package.ConnectionManagers[VDB01_DEMITIDOS_LOOKUP]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Inputs[Lookup Input].Columns[STR_ACTIVEDIRECTORY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="STR_ACTIVEDIRECTORY"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Outputs[Data Conversion Output].Columns[STR_ACTIVEDIRECTORY]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">UserAD</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Inativa Usuario AD e  popula tabela APIS\Multicast"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+              name="Multicast">
+              <inputs>
+                <input
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Multicast.Inputs[Multicast Input 1]"
+                  name="Multicast Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Multicast.Outputs[Multicast Output 2]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 2"
+                  synchronousInputId="Package\Inativa Usuario AD e  popula tabela APIS\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Multicast.Outputs[Multicast Output 3]"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 3"
+                  synchronousInputId="Package\Inativa Usuario AD e  popula tabela APIS\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Inativa Usuario AD e  popula tabela APIS\Multicast.Outputs[Multicast Output 1]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Multicast Output 1"
+                  synchronousInputId="Package\Inativa Usuario AD e  popula tabela APIS\Multicast.Inputs[Multicast Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Inativa Usuario AD e  popula tabela APIS.Paths[ADO NET Source Output]"
+              endId="Package\Inativa Usuario AD e  popula tabela APIS\Multicast.Inputs[Multicast Input 1]"
+              name="ADO NET Source Output"
+              startId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Inativa Usuario AD e  popula tabela APIS.Paths[Data Conversion Output]"
+              endId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Inativa Usuario AD e  popula tabela APIS.Paths[Derived Column Output]"
+              endId="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Inativa Usuario AD e  popula tabela APIS.Paths[Lookup No Match Output]"
+              endId="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Inativa Usuario AD e  popula tabela APIS.Paths[Multicast Output 2]"
+              endId="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column.Inputs[Derived Column Input]"
+              name="Multicast Output 2"
+              startId="Package\Inativa Usuario AD e  popula tabela APIS\Multicast.Outputs[Multicast Output 2]" />
+            <path
+              refId="Package\Inativa Usuario AD e  popula tabela APIS.Paths[Multicast Output 3]"
+              endId="Package\Inativa Usuario AD e  popula tabela APIS\Flat File Destination 1.Inputs[Flat File Destination Input]"
+              name="Multicast Output 3"
+              startId="Package\Inativa Usuario AD e  popula tabela APIS\Multicast.Outputs[Multicast Output 3]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{99CE9ECD-C7F8-4931-8AE6-3645AEC5B8E5}"
+      DTS:From="Package\Apaga arquivo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Inativa Usuario AD e  popula tabela APIS" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Apaga arquivo"
+          TopLeft="219,36" />
+        <NodeLayout
+          Size="272,42"
+          Id="Package\Inativa Usuario AD e  popula tabela APIS"
+          TopLeft="156,112" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="292.25,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Inativa Usuario AD e  popula tabela APIS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Inativa Usuario AD e  popula tabela APIS\Flat File Destination 1"
+          TopLeft="232,341" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Inativa Usuario AD e  popula tabela APIS\Data Conversion"
+          TopLeft="456,297" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Inativa Usuario AD e  popula tabela APIS\Multicast"
+          TopLeft="308,108" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Inativa Usuario AD e  popula tabela APIS\Derived Column"
+          TopLeft="455,203" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS"
+          TopLeft="459,372" />
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Destination"
+          TopLeft="444,496" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source"
+          TopLeft="286,39" />
+        <EdgeLayout
+          Id="Package\Inativa Usuario AD e  popula tabela APIS.Paths[Multicast Output 3]"
+          TopLeft="349.333333333333,150">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-26.8333333333333,191"
+              Start="0,0"
+              End="-26.8333333333333,183.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.9078947368421" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,73.9078947368421"
+                    Point2="0,77.9078947368421"
+                    Point3="-4,77.9078947368421" />
+                  <mssgle:LineSegment
+                    End="-22.8333333333333,77.9078947368421" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.8333333333333,77.9078947368421"
+                    Point2="-26.8333333333333,77.9078947368421"
+                    Point3="-26.8333333333333,81.9078947368421" />
+                  <mssgle:LineSegment
+                    End="-26.8333333333333,183.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-31.5001627604167,82.9078947368421,36.1669921875,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Inativa Usuario AD e  popula tabela APIS.Paths[Multicast Output 2]"
+          TopLeft="386.666666666667,150">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="145.333333333333,53"
+              Start="0,0"
+              End="145.333333333333,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.6184210526316" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.6184210526316"
+                    Point2="0,21.6184210526316"
+                    Point3="4,21.6184210526316" />
+                  <mssgle:LineSegment
+                    End="141.333333333333,21.6184210526316" />
+                  <mssgle:CubicBezierSegment
+                    Point1="141.333333333333,21.6184210526316"
+                    Point2="145.333333333333,21.6184210526316"
+                    Point3="145.333333333333,25.6184210526316" />
+                  <mssgle:LineSegment
+                    End="145.333333333333,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="54.5831705729165,26.6184210526316,36.1669921875,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Inativa Usuario AD e  popula tabela APIS.Paths[Lookup No Match Output]"
+          TopLeft="532.75,414">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,82"
+              Start="0,0"
+              End="0,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-78.42173828125,31.4453125,156.8434765625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Inativa Usuario AD e  popula tabela APIS.Paths[Derived Column Output]"
+          TopLeft="533,245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-18.08349609375,17.5390625,36.1669921875,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Inativa Usuario AD e  popula tabela APIS.Paths[Data Conversion Output]"
+          TopLeft="533,339">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-18.08349609375,8.0390625,36.1669921875,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Inativa Usuario AD e  popula tabela APIS.Paths[ADO NET Source Output]"
+          TopLeft="366.5,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-18.08349609375,5.0390625,36.1669921875,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Inativa Usuario AD e  popula tabela APIS\Lookup - APIS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DemitidosRH]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Inativa Usuario AD e  popula tabela APIS\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
