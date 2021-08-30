@@ -1,0 +1,1 @@
+# block_all_access_from_ERP_protheus
